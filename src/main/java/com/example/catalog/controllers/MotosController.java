@@ -7,10 +7,16 @@ import org.springframework.ui.Model;
 
 @Controller
 public class MotosController {
-    
+
     @RequestMapping("/nameDisplay")
-    public String hello(@RequestParam("name") String name, Model model )  {
+    public String hello(@RequestParam("name") String name, Model model) {
         model.addAttribute("name", name);
         return "test";
     }
+
+    @RequestMapping("/motoList")
+    public String motoList() {
+        return "motoList";
+    }
+
 }
