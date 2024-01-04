@@ -37,21 +37,10 @@
                             <!-- forは連動させる要素を設定できる -->
                             <label for="dropdownMenuButton">名前</label>
                             <div class="dropdown">
-                                <button
-                                    class="btn btn-secondary dropdown-toggle"
-                                    type="button"
-                                    id="dropdownMenuButton"
-                                    data-toggle="dropdown"
-                                    aria-haspopup="true"
-                                    aria-expanded="false"
-                                >
-                                    Dropdown button
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Yonekura</a>
-                                    <a class="dropdown-item" href="#">sakamoto</a>
-                                    <a class="dropdown-item" href="#">hasimoto</a>
-                                </div>
+                                <select class="form-control" id="dropdownMenuButton">
+                                    <!-- th:textで表示する値を設定,th:valueで所属IDを設定  -->
+                                    <option th:each="affiliation : ${affiliations}" th:text="${affiliation.affiliationName}" th:value="${affiliation.affiliationId}"></option>
+                                </select>
                             </div>
                         </div>
                     </form>
@@ -94,13 +83,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- th:eachで繰り返し処理を行う -->
-                            <tr th:each="user : ${users}">
-                                <td th:text="${user.userId}"></td>
-                                <td th:text="${user.name}"></td>
-                                <td th:text="${user.birthday}"></td>
-                                <td th:text="${user.email}"></td>
-                                <td th:text="${user.authority}"></td>
+                            <!-- th:eachで行（tr）繰り返し処理を行う -->
+                            <tr th:each="user : ${users}" th:object="${user}">
+                                <!-- th:objectを使うと${user.~}ではなく*{}で値を取得できる -->
+                                <td th:text="*{userId}"></td>
+                                <td th:text="*{name}"></td>
+                                <td th:text="*{birthday}"></td>
+                                <td th:text="*{email}"></td>
+                                <td th:text="*{authority}"></td>
                             </tr>
                             <!-- <tr>
                                 <th scope="row">2</th>

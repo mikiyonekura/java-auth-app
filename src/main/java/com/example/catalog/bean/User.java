@@ -17,6 +17,8 @@ public class User {
     private String birthday;
     private String email;
     private String password;
+    //所属
+    private Affiliation affiliationId;
     //権限
     private String authority;
     //登録日時
